@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const MONGODB_URI = "apni mongo ka url enter kro";
+const MONGODB_URI = "mongodb://localhost:27017";
 
 const connectDB = async () => {
   try {
