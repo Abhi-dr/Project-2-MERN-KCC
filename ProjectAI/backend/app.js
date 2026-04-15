@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const registrationRoutes = require("./routes/registrationRoutes");
 const authRoutes = require("./routes/authRoutes"); 
+const aiRoutes = require("./routes/aiRoutes");
 
 
 
@@ -18,8 +19,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", registrationRoutes);
-
 app.use("/api/auth", authRoutes); 
+app.use("/api/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "AI Debate Arena Backend chal raha hai!" });
