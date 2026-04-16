@@ -1,10 +1,9 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-exports.askAi = async (req, res) => {
+const askAi = async (req, res) => {
     try {
 
         const { prompt } = req.body;
-
 
         const final_prompt = `You are an AI debate opponent in a live interactive debate platform for students.
 
@@ -114,8 +113,6 @@ now, the user input is: ${prompt}
 
 `
 
-        console.log(final_prompt);
-
         if (!final_prompt) {
             return res.status(400).json({ error: "Prompt is required" });
         }
@@ -126,9 +123,9 @@ now, the user input is: ${prompt}
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
-        const result = await model.generateContent(final_prompt);
+        const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
 
@@ -138,3 +135,5 @@ now, the user input is: ${prompt}
         res.status(500).json({ error: "Failed to generate content from AI" });
     }
 };
+
+module.exports = askAi;

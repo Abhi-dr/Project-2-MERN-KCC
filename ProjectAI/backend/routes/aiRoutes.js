@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const aiController = require("../controllers/aiController");
-const verifyToken = require("../middleware/verifyToken");
+const askAi = require("../controllers/aiController");
+// const verifyToken = require("../middleware/verifyToken");
 
-router.post("/ask", verifyToken, aiController.askAi);
+router.post("/ask", askAi);
 
 module.exports = router;
